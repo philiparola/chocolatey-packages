@@ -1,8 +1,8 @@
 ﻿$ErrorActionPreference = 'Stop';
 
 $packageName= 'CHIRP.install'
-$version	= '2016.05.04'
-$url        = 'http://trac.chirp.danplanet.com/chirp_daily/daily-20160504/chirp-daily-20160504-installer.exe'
+$version	= '2016.05.05'
+$url        = 'http://trac.chirp.danplanet.com/chirp_daily/daily-20160505/chirp-daily-20160505-installer.exe'
 $fileType = 'exe'
 $silentArgs = '/S'
 
