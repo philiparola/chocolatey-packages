@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>opencv</id>
     <title>OpenCV</title>
-    <version>3.1.0</version>
+    <version>2.4.13</version>
     <authors>Itseez</authors>
     <owners>Philip Arola</owners>
     <summary>Open Source Computer Vision</summary>
