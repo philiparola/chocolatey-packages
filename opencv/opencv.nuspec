@@ -18,7 +18,7 @@ Pass the package argument /InstallationPath to set where OpenCV will unzip itsel
 Pass the package argument /Environment to add OpenCV to your user environment variables, which may or may not be necessary.  Check the installation guide on OpenCV's website to determine the precise directory structure you want to add to your path.  The OPENCV\_DIR variable will be created/replaced, and Path will be appended with %OPENCV\_DIR%\bin.
 	</description>
     <projectUrl>http://opencv.org/</projectUrl>
-	<packageSourceUrl>https://github.com/philiparola/choco-opencv</packageSourceUrl>
+	<packageSourceUrl>https://github.com/philiparola/chocolatey-packages/manual/opencv/2.4</packageSourceUrl>
     <projectSourceUrl>https://github.com/Itseez/opencv</projectSourceUrl>
     <docsUrl>http://opencv.org/documentation.html</docsUrl>
     <bugTrackerUrl>https://github.com/Itseez/opencv/wiki#reporting-bugs</bugTrackerUrl>
@@ -26,7 +26,7 @@ Pass the package argument /Environment to add OpenCV to your user environment va
     <copyright></copyright>
     <licenseUrl>http://opencv.org/license.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://raw.githubusercontent.com/philiparola/choco-opencv/master/opencv.png</iconUrl>
+	<iconUrl>https://cdn.rawgit.com/philiparola/chocolatey-packages/8bbda56cc71494a5d674ecb63ef0882915e9a91e/opencv/opencv.png</iconUrl>
     <!--<dependencies>
       <dependency id="" version="__VERSION__" />
       <dependency id="" />
