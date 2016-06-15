@@ -13,8 +13,14 @@
 	<description>
 OpenCV is released under a BSD license and hence it's free for both academic and commercial use. It has C++, C, Python and Java interfaces and supports Windows, Linux, Mac OS, iOS and Android. OpenCV was designed for computational efficiency and with a strong focus on real-time applications. Written in optimized C/C++, the library can take advantage of multi-core processing. Enabled with OpenCL, it can take advantage of the hardware acceleration of the underlying heterogeneous compute platform. Adopted all around the world, OpenCV has more than 47 thousand people of user community and estimated number of downloads exceeding 9 million. Usage ranges from interactive art, to mines inspection, stitching maps on the web or through advanced robotics.
 
+###Package Info
+This version is from the 2.4 branch of development, which has been feature frozen and only releases bug fixes.
+
+This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 267 MB.
+If you wish to customize the features compiled in your installation, then you must compile OpenCV yourself.  This requires [Git](https://chocolatey.org/packages/git) and [CMake](https://chocolatey.org/packages/cmake).  You can follow the instructions at http://docs.opencv.org/2.4/doc/tutorials/introduction/windows_visual_studio_Opencv/windows_visual_studio_Opencv.html to build using [Microsoft Visual Studio](https://chocolatey.org/packages/VisualStudio2015Community) (note the old documentation; there will be some differences).
+
 ###Package Parameters
-Pass the package argument /InstallationPath to set where OpenCV will unzip itself.  Left alone, it will unzip in the root C: drive.  Remember, it will always unzip itself to a new folder called \opencv in the directory you chose.
+Pass the package argument /InstallationPath to set where OpenCV will unzip itself.  Left alone, it will unzip in your Chocolatey Tools directory.  Remember, it will always unzip itself to a new folder called \opencv in the directory you chose.
 Pass the package argument /Environment to add OpenCV to your user environment variables, which may or may not be necessary.  Check the installation guide on OpenCV's website to determine the precise directory structure you want to add to your path.  The OPENCV\_DIR variable will be created/replaced, and Path will be appended with %OPENCV\_DIR%\bin.
 	</description>
     <projectUrl>http://opencv.org/</projectUrl>
