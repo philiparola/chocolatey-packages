@@ -4,7 +4,7 @@
   <metadata>
     <id>chirp.install</id>
     <title>CHIRP (Install)</title>
-    <version>2016.06.04</version>
+    <version>2016.06.11</version>
 	<authors>Dan Smith (KK7DS)</authors>
     <owners>PhilipArola</owners>
     <summary>CHRIP Radio Programmer</summary>
@@ -20,7 +20,7 @@
     <copyright>Dan Smith (KK7DS)</copyright>
 	<licenseUrl>http://chirp.danplanet.com/projects/chirp/repository/revisions/222c1830b798/entry/COPYING</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://raw.githubusercontent.com/philiparola/chirp.install/master/chirp.png</iconUrl>
+	<iconUrl>https://github.com/philiparola/chocolatey-packages/blob/master/manual/chirp.install/chirp.png</iconUrl>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
