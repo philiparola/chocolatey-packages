@@ -4,7 +4,7 @@
   <metadata>
     <id>chirp.install</id>
     <title>CHIRP (Install)</title>
-    <version>2016.08.30</version>
+    <version>2016.09.03</version>
 	<authors>Dan Smith (KK7DS)</authors>
     <owners>PhilipArola</owners>
     <summary>CHIRP Radio Programmer</summary>
@@ -24,6 +24,7 @@
 	<releaseNotes>
 	http://chirp.danplanet.com/projects/chirp/repository/revisions
 	</releaseNotes>
+	<packageSourceUrl>https://github.com/philiparola/chocolatey-packages</packageSourceUrl>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
