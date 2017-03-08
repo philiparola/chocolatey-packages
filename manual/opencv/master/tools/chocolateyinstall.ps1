@@ -4,6 +4,8 @@ $ErrorActionPreference = 'Stop';
 $packageName= 'OpenCV'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $url        = 'https://github.com/opencv/opencv/releases/download/3.2.0/opencv-3.2.0-vc14.exe'
+$checksum = '3E2B73FE6D0F84F8947A3A5D8776F93EC4D3EB7A0A3E32C13CD1CDDFDA85F786'
+$checksumType = 'sha256'
 $installationPath = Get-ToolsLocation
 
 if ($packageParameters) {
@@ -50,10 +52,12 @@ else {
 }
 
 $packageArgs = @{
-		packageName   = $packageName
-		unzipLocation = $installationPath
-		fileType      = 'EXE'
-		url           = $url
+		packageName		= $packageName
+		unzipLocation	= $installationPath
+		fileType		= 'EXE'
+		url				= $url
+		checksum		= $checksum
+		checksumType	= $checksumType
 }
 
 Install-ChocolateyZipPackage @packageArgs
