@@ -1,11 +1,11 @@
 ﻿$ErrorActionPreference = 'Stop';
 
 $packageName= 'CHIRP.install'
-$version	= '2017.04.30'
-$url        = 'http://trac.chirp.danplanet.com/chirp_daily/daily-20170430/chirp-daily-20170430-installer.exe'
+$version	= '2017.05.01'
+$url        = 'http://trac.chirp.danplanet.com/chirp_daily/daily-20170501/chirp-daily-20170501-installer.exe'
 $fileType = 'exe'
 $silentArgs = '/S'
-$checksum = 'a6f9b8ebf32f0cdd21eb53b9185057f8d898fc47'
+$checksum = 'a10e4649f7cf7f739f990f09a013695ff7dfaa5b'
 $checksumType = 'sha1'
 
 Install-ChocolateyPackage $packagename $fileType $silentArgs $url -checksum $checksum -checksumType $checksumType
