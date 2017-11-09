@@ -3,8 +3,8 @@ $packageParameters = $env:chocolateyPackageParameters
 $ErrorActionPreference = 'Stop';
 $packageName= 'OpenCV'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'https://github.com/opencv/opencv/releases/download/3.2.0/opencv-3.2.0-vc14.exe'
-$checksum = '3E2B73FE6D0F84F8947A3A5D8776F93EC4D3EB7A0A3E32C13CD1CDDFDA85F786'
+$url        = 'https://github.com/opencv/opencv/releases/download/3.3.0/opencv-3.3.0-vc14.exe'
+$checksum = '4B3FB5136378689F21AFC1E660C3B0D8B00EF0A87853BCE7BBD930B4C86094D0'
 $checksumType = 'sha256'
 $installationPath = Get-ToolsLocation
 
