@@ -3,7 +3,9 @@ $packageParameters = $env:chocolateyPackageParameters
 $ErrorActionPreference = 'Stop';
 $packageName= 'OpenCV'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'http://downloads.sourceforge.net/project/opencvlibrary/opencv-win/2.4.13/opencv-2.4.13.exe'
+$url        = 'https://github.com/opencv/opencv/releases/download/2.4.13.2/opencv-2.4.13.2-vc14.exe'
+$checksum = '25D743D12B18BC727BBF4D6967BF8ABB1036D35CE2FBA9813F26FF3D04397F4A'
+$checksumType = 'sha256'
 $installationPath = Get-ToolsLocation
 
 if ($packageParameters) {
@@ -50,10 +52,12 @@ else {
 }
 
 $packageArgs = @{
-		packageName   = $packageName
-		unzipLocation = $installationPath
-		fileType      = 'EXE'
-		url           = $url
+		packageName		= $packageName
+		unzipLocation	= $installationPath
+		fileType		= 'EXE'
+		url				= $url
+		checksum		= $checksum
+		checksumType	= $checksumType
 }
 
 Install-ChocolateyZipPackage @packageArgs
