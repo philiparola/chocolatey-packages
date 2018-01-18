@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>OpenCV</id>
     <title>OpenCV</title>
-    <version>2.4.13.4</version>
+    <version>2.4.13.5</version>
     <authors>Itseez</authors>
     <owners>Philip Arola</owners>
     <summary>Open Source Computer Vision</summary>
@@ -16,7 +16,7 @@ OpenCV is released under a BSD license and hence it's free for both academic and
 ###Package Info
 This version is from the 2.4 branch of development, which has been feature frozen and only releases bug fixes.
 
-This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 193 MB.
+This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 188 MB.
 If you wish to customize the features compiled in your installation, then you must compile OpenCV yourself.  This requires [Git](https://chocolatey.org/packages/git) and [CMake](https://chocolatey.org/packages/cmake).  You can follow the instructions at [opencv.org](http://docs.opencv.org/2.4/doc/tutorials/introduction/windows_visual_studio_Opencv/windows_visual_studio_Opencv.html "OpenCV build tutorial") to build using [Microsoft Visual Studio](https://chocolatey.org/packages/visualstudio2017community "Visual Studio Chocolatey Package") (note the old documentation; there will be some differences).
 
 ###Package Parameters
