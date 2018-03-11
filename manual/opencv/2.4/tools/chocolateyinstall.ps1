@@ -4,7 +4,7 @@ $ErrorActionPreference = 'Stop';
 $packageName= 'OpenCV'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $url        = 'https://github.com/opencv/opencv/releases/download/2.4.13.6/opencv-2.4.13.6-vc14.exe'
-$checksum = '7CB3D1445F0AC935CF174BD0FE4E3779'
+$checksum = '57BF404C3763092E8FDFC08E6DB790DDD19E3D0E0D6122146F94EF3F9C551FFE'
 $checksumType = 'sha256'
 $installationPath = Get-ToolsLocation
 
