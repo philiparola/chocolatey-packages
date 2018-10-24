@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
+    <id>OpenCV</id>
+    <title>OpenCV</title>
+    <version>4.0.0-alpha</version>
+    <authors>Itseez</authors>
+    <owners>Philip Arola</owners>
+    <summary>Open Source Computer Vision</summary>
+	<!-- If you are following the instuction below directly from this file (duh), then careful, as I had to diddle with Markdown to get it to behave properly on the Chocolatey pakage page.-->
+	<description>
+OpenCV is released under a BSD license and hence it's free for both academic and commercial use. It has C++, C, Python and Java interfaces and supports Windows, Linux, Mac OS, iOS and Android. OpenCV was designed for computational efficiency and with a strong focus on real-time applications. Written in optimized C/C++, the library can take advantage of multi-core processing. Enabled with OpenCL, it can take advantage of the hardware acceleration of the underlying heterogeneous compute platform. Adopted all around the world, OpenCV has more than 47 thousand people of user community and estimated number of downloads exceeding 9 million. Usage ranges from interactive art, to mines inspection, stitching maps on the web or through advanced robotics.
+
+###Package Info
+This version is from the experimental branch of development, so while this is the cutting edge of OpenCV, it can also be highly unstable.
+
+This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 176 MB.
+If you wish to customize the features compiled in your installation, then you must compile OpenCV yourself.  This requires [Git](https://chocolatey.org/packages/git) and [CMake](https://chocolatey.org/packages/cmake).  You can follow the instructions at [opencv.org](https://docs.opencv.org/master/d6/d8a/tutorial_windows_visual_studio_Opencv.html "OpenCV build tutorial") to build using [Microsoft Visual Studio](https://chocolatey.org/packages/visualstudio2017community "Visual Studio Chocolatey Package").
+
+###Package Parameters
+Pass the package argument /InstallationPath to set where OpenCV will unzip itself.  Left alone, it will unzip in your Chocolatey Tools directory.  Remember, it will always unzip itself to a new folder called \opencv in the directory you chose.
+Pass the package argument /Environment to add OpenCV to your user environment variables, which may or may not be necessary.  Check the installation guide on OpenCV's website to determine the precise directory structure you want to add to your path.  The OPENCV\_DIR variable will be created/replaced, and Path will be appended with %OPENCV\_DIR%\bin.
+</description>
+    <projectUrl>http://opencv.org/</projectUrl>
+	<packageSourceUrl>https://github.com/philiparola/chocolatey-packages/tree/master/manual/opencv/master</packageSourceUrl>
+    <projectSourceUrl>https://github.com/Itseez/opencv</projectSourceUrl>
+    <docsUrl>http://opencv.org/documentation.html</docsUrl>
+    <bugTrackerUrl>https://github.com/Itseez/opencv/wiki#reporting-bugs</bugTrackerUrl>
+    <tags>opencv programming library image processing</tags>
+    <copyright></copyright>
+    <licenseUrl>http://opencv.org/license.html</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://cdn.rawgit.com/philiparola/chocolatey-packages/8bbda56cc71494a5d674ecb63ef0882915e9a91e/opencv/opencv.png</iconUrl>
+    <!--<dependencies>
+      <dependency id="" version="__VERSION__" />
+      <dependency id="" />
+    </dependencies>-->
+    <releaseNotes>
+We are glad to announce OpenCV 4.0 alpha release, the first intermediate release before 4.0 final.
+
+Change log is [here](https://github.com/opencv/opencv/wiki/ChangeLog#version400).
+      </releaseNotes>
+    <!--<provides></provides>-->
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
