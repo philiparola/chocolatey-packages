@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>OpenCV</id>
     <title>OpenCV</title>
-    <version>3.4.2</version>
+    <version>3.4.3</version>
     <authors>Itseez</authors>
     <owners>Philip Arola</owners>
     <summary>Open Source Computer Vision</summary>
@@ -16,7 +16,7 @@ OpenCV is released under a BSD license and hence it's free for both academic and
 ###Package Info
 This version is from the master branch of development, which is the cutting edge of OpenCV development.
 
-This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 173 MB.
+This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 174 MB.
 If you wish to customize the features compiled in your installation, then you must compile OpenCV yourself.  This requires [Git](https://chocolatey.org/packages/git) and [CMake](https://chocolatey.org/packages/cmake).  You can follow the instructions at [opencv.org](https://docs.opencv.org/master/d6/d8a/tutorial_windows_visual_studio_Opencv.html "OpenCV build tutorial") to build using [Microsoft Visual Studio](https://chocolatey.org/packages/visualstudio2017community "Visual Studio Chocolatey Package").
 
 ###Package Parameters
@@ -37,7 +37,11 @@ Pass the package argument /Environment to add OpenCV to your user environment va
       <dependency id="" version="__VERSION__" />
       <dependency id="" />
     </dependencies>-->
-    <releaseNotes>OpenCV 3.4.2 has been released, with further extended dnn module, documentation improvements, some other new functionality and bug fixes.</releaseNotes>
+    <releaseNotes>
+OpenCV 3.4.3 has been released, with further extended dnn module, documentation improvements, some other new functionality and bug fixes.
+
+Change log is [here](https://github.com/opencv/opencv/wiki/ChangeLog#version343).
+      </releaseNotes>
     <!--<provides></provides>-->
   </metadata>
   <files>
