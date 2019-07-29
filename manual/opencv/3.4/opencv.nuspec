@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>OpenCV</id>
     <title>OpenCV</title>
-    <version>3.4.6</version>
+    <version>3.4.7</version>
     <authors>Itseez</authors>
     <owners>Philip Arola</owners>
     <summary>Open Source Computer Vision</summary>
@@ -16,8 +16,8 @@ OpenCV is released under a BSD license and hence it's free for both academic and
 ###Package Info
 This version is from the 3.4 branch of development, which is a maintenence branch of OpenCV.
 
-This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 206 MB.
-If you wish to customize the features compiled in your installation, then you must compile OpenCV yourself.  This requires [Git](https://chocolatey.org/packages/git) and [CMake](https://chocolatey.org/packages/cmake).  You can follow the instructions at [opencv.org](https://docs.opencv.org/master/d6/d8a/tutorial_windows_visual_studio_Opencv.html "OpenCV build tutorial") to build using [Microsoft Visual Studio](https://chocolatey.org/packages/visualstudio2017community "Visual Studio Chocolatey Package").
+This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 209 MB.
+If you wish to customize the features compiled in your installation, then you must compile OpenCV yourself.  This requires [Git](https://chocolatey.org/packages/git) and [CMake](https://chocolatey.org/packages/cmake).  You can follow the instructions at [opencv.org](https://docs.opencv.org/3.4/d3/d52/tutorial_windows_install.html "OpenCV build tutorial") to build using [Microsoft Visual Studio](https://chocolatey.org/packages/visualstudio2017community "Visual Studio Chocolatey Package").
 
 ###Package Parameters
 Pass the package argument /InstallationPath to set where OpenCV will unzip itself.  Left alone, it will unzip in your Chocolatey Tools directory.  Remember, it will always unzip itself to a new folder called \opencv in the directory you chose.
@@ -25,9 +25,9 @@ Pass the package argument /Environment to add OpenCV to your user environment va
 </description>
     <projectUrl>http://opencv.org/</projectUrl>
 	<packageSourceUrl>https://github.com/philiparola/chocolatey-packages/tree/master/manual/opencv/3.4</packageSourceUrl>
-    <projectSourceUrl>https://github.com/Itseez/opencv</projectSourceUrl>
-    <docsUrl>http://opencv.org/documentation.html</docsUrl>
-    <bugTrackerUrl>https://github.com/Itseez/opencv/wiki#reporting-bugs</bugTrackerUrl>
+    <projectSourceUrl>https://github.com/opencv/opencv</projectSourceUrl>
+	<docsUrl>https://docs.opencv.org/</docsUrl>
+	<bugTrackerUrl>https://github.com/opencv/opencv/wiki#development</bugTrackerUrl>
     <tags>opencv programming library image processing</tags>
     <copyright></copyright>
     <licenseUrl>http://opencv.org/license.html</licenseUrl>
@@ -38,7 +38,7 @@ Pass the package argument /Environment to add OpenCV to your user environment va
       <dependency id="" />
     </dependencies>-->
     <releaseNotes>
-OpenCV 3.4.6 has been released. This is a mantenance release. New features are landed in OpenCV 4.0.
+			[https://github.com/opencv/opencv/wiki/ChangeLog#version347](https://github.com/opencv/opencv/wiki/ChangeLog#version347)
       </releaseNotes>
     <!--<provides></provides>-->
   </metadata>
