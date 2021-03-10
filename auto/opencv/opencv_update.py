@@ -1,6 +1,7 @@
 """Update OpenCV chocolatey packages
 """
 from github import Github
+from datetime import datetime, timedelta
 import wget, hashlib
 import wget
 import os
@@ -13,6 +14,7 @@ import sys
 # Regex for opencv versioning
 # \d+\.{1}\d+\.{1}\d+
 
+now = now = datetime.now()
 BUF_SIZE = 4096
 DEBUG = True		# In actual operation, we want to redownload every time to ensure pristine checksums
 
@@ -21,45 +23,61 @@ def main():
 	token = f.read(40) # Github tokens are fixed length
 	g = Github(token)
 	repo = g.get_repo('opencv/opencv')
+	global releases
 	releases = repo.get_releases()
 
-	last_two_releases(releases)
+	last_24_hours():
 
 
-def create_package_from_release(branch, release, asset):
-	if os.path.isfile(asset.name) and DEBUG is True:
+def create_package_from_release(release):
+	if release.tag_name[0] == "4":
+		branch = "master"
+	elif release.tag_name[0] == "3":
+		branch = "3.4"
+	else:
+		print("ERROR PARSING VERSION: " + release.tag_name)
+		return
+
+	installer = None
+
+	for asset in release.get_assets():
+		print(asset.name)
+		if asset.name.find(".exe") > 0:
+			installer = asset
+
+	if installer is None:
+		print("This release does not appear to have a Windows installer")
+		return
+
+	if os.path.isfile(installer.name) and DEBUG is True:
 		download = asset.name
 	else:
-		download = wget.download(asset.browser_download_url)
+		download = wget.download(installer.browser_download_url)
 		print("\n")
+
 	sha256_hash = hashlib.sha256()
 	with open(download,"rb") as f:
 		for byte_block in iter(lambda: f.read(BUF_SIZE),b""):
 			sha256_hash.update(byte_block)
-	choco_pack_wrapper(branch, asset.name, asset.browser_download_url, release.tag_name, sha256_hash.hexdigest(), release.body, os.path.getsize(download) >> 20)
+	choco_pack_wrapper(branch, installer.name, installer.browser_download_url, release.tag_name, sha256_hash.hexdigest(), release.body, os.path.getsize(download) >> 20)
 
 
-def last_two_releases(releases):
+def last_two_releases():
 	# Current OpenCV release scheme is release two versions at once; 3.x version and 4.x version.  This will work until that changes, whether that be a major version increment or something more serious.	
-	for asset in releases[0].get_assets():
-		asset_url_index = asset.name.find(".exe")
-		if (asset_url_index > 0):
-			create_package_from_release("master", releases[0], asset)
-
-	for asset in releases[1].get_assets():
-		asset_url_index = asset.name.find(".exe")
-		if (asset_url_index > 0):
-			create_package_from_release("3.4", releases[1], asset)
+	create_package_from_release(releases[0])
+	create_package_from_release(releases[1])
 
 
-def last_release_in_file(releases):
-	# We store a version history in a file, or even check choco itself.  Regardless, this is a longer term goal.  Get proof of concept working.
-	pass
+def last_24_hours():
+	for release in releases:
+		if now-timedelta(hours=24) <= release.published_at <= now:
+			create_package_from_release(release)
 
 
-def specific_verion_as_param(version, releases):
-	# Specify a version to generate.  This can possibly have all the logic, and the other two call it over and over
-	pass
+def list_of_tags(list):
+	for release in releases:
+		if release.tag_name in list:
+			create_package_from_release(release)
 
 
 def choco_pack_wrapper(branch, filename, url, version_number, hash, releasenotes, filesize):
