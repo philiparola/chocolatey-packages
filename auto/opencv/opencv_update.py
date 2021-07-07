@@ -83,7 +83,7 @@ def list_of_tags(list):
 def choco_pack_wrapper(branch, filename, url, version_number, hash, releasenotes, filesize):
 	# Create copies of the template files
 	shutil.copyfile("./" + branch + "/opencv.nuspec.template", "./" + branch + "/opencv.nuspec")
-	shutil.copyfile("./" + branch + "/tools/chocolateyinstall.ps1.template", "./" + branch + "/tools/chocolateyinstall.ps1")
+	shutil.copyfile("./" + branch + "/chocolateyinstall.ps1.template", "./" + branch + "/tools/chocolateyinstall.ps1")
 	# Change the contents of the new files with the new data
 	with in_place.InPlace("./" + branch + "/opencv.nuspec", encoding="utf-8") as file:
 		for line in file:
