@@ -1,3 +1,9 @@
 *.nupkg
 auto/opencv/github_token.txt
 *.tmp
+*.exe
+# Generated from templates
+auto/opencv/3.4/opencv.nuspec
+auto/opencv/3.4/tools/chocolateyinstall.ps1
+auto/opencv/master/opencv.nuspec
+auto/opencv/master/tools/chocolateyinstall.ps1

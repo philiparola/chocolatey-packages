@@ -26,7 +26,7 @@ def main():
 	global releases
 	releases = repo.get_releases()
 
-	last_24_hours():
+	last_two_releases()
 
 
 def create_package_from_release(release):
