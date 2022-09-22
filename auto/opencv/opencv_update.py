@@ -1,5 +1,8 @@
+#!/usr/bin/python3
+
 """Update OpenCV chocolatey packages
 """
+#py -3 -m pip install --user PyGithub wget in-place
 from github import Github
 from datetime import datetime, timedelta
 import wget, hashlib
@@ -26,7 +29,7 @@ def main():
 	global releases
 	releases = repo.get_releases()
 
-	last_two_releases()
+	latest()
 
 
 def create_package_from_release(release):
@@ -67,6 +70,8 @@ def last_two_releases():
 	create_package_from_release(releases[0])
 	create_package_from_release(releases[1])
 
+def latest():
+	create_package_from_release(releases[0])
 
 def last_24_hours():
 	for release in releases:
@@ -82,6 +87,7 @@ def list_of_tags(list):
 
 def choco_pack_wrapper(branch, filename, url, version_number, hash, releasenotes, filesize):
 	# Create copies of the template files
+	os.makedirs("./" + branch + "/tools/", exist_ok=False)
 	shutil.copyfile("./" + branch + "/opencv.nuspec.template", "./" + branch + "/opencv.nuspec")
 	shutil.copyfile("./" + branch + "/chocolateyinstall.ps1.template", "./" + branch + "/tools/chocolateyinstall.ps1")
 	# Change the contents of the new files with the new data
