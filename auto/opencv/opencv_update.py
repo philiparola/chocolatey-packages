@@ -13,6 +13,7 @@ import fileinput
 import shutil
 import in_place
 import sys
+import re
 
 # Regex for opencv versioning
 # \d+\.{1}\d+\.{1}\d+
@@ -53,7 +54,7 @@ def create_package_from_release(release):
 		return
 
 	if os.path.isfile(installer.name) and DEBUG is True:
-		download = asset.name
+		download = installer.name
 	else:
 		download = wget.download(installer.browser_download_url)
 		print("\n")
@@ -87,9 +88,10 @@ def list_of_tags(list):
 
 def choco_pack_wrapper(branch, filename, url, version_number, hash, releasenotes, filesize):
 	# Create copies of the template files
-	os.makedirs("./" + branch + "/tools/", exist_ok=False)
+	os.makedirs("./" + branch + "/tools/", exist_ok=True)
 	shutil.copyfile("./" + branch + "/opencv.nuspec.template", "./" + branch + "/opencv.nuspec")
 	shutil.copyfile("./" + branch + "/chocolateyinstall.ps1.template", "./" + branch + "/tools/chocolateyinstall.ps1")
+	long_releasenotes = pull_release_notes(version_number)
 	# Change the contents of the new files with the new data
 	with in_place.InPlace("./" + branch + "/opencv.nuspec", encoding="utf-8") as file:
 		for line in file:
@@ -99,8 +101,7 @@ def choco_pack_wrapper(branch, filename, url, version_number, hash, releasenotes
 			file.write(line.replace("[FILESIZE]", str(filesize)))
 	with in_place.InPlace("./" + branch + "/opencv.nuspec", encoding="utf-8") as file:
 		for line in file:
-			file.write(line.replace("[RELEASE_NOTES]", releasenotes))
-
+			file.write(line.replace("[RELEASE_NOTES]", long_releasenotes))
 	with in_place.InPlace("./" + branch + "/tools/chocolateyinstall.ps1", encoding="utf-8") as file:
 		for line in file:
 			file.write(line.replace("[URL]", url))
@@ -112,6 +113,7 @@ def choco_pack_wrapper(branch, filename, url, version_number, hash, releasenotes
 	print(version_number)
 	print(hash)
 	print(releasenotes)
+	print(long_releasenotes)
 	print(filesize)
 	# Run 'choco pack' with the new files
 	os.system("cd " + branch + " && choco pack")
@@ -120,6 +122,39 @@ def choco_pack_wrapper(branch, filename, url, version_number, hash, releasenotes
 		os.system("cd " + branch + " && choco push OpenCV." + version_number + ".nupkg")
 	# OPTIONAL: Create Git commit?
 
+def pull_release_notes(version_number):
+	# NOTA BENE: You need to have long paths and git LFS enabled to prevent issues checking out the wiki repo
+	# git config --global core.protectNTFS false
+	# git config --system core.longpaths true
+	# https://stackoverflow.com/a/73448793/3938497
+	original_dir = os.getcwd()
+	#os.system("cd " + os.path.expanduser("~"))
+	os.chdir(os.path.expanduser("~"))
+	if os.path.exists("opencv.wiki"):
+		os.system("cd opencv.wiki && git pull")
+	else:
+		os.system("git clone https://github.com/opencv/opencv.wiki.git")
+	os.chdir("opencv.wiki")
+	print(os.getcwd())
+
+	with open('ChangeLog.md','r',encoding="utf8") as file:
+		changelogRaw = file.read()
+
+	version_tag_header_positions = re.finditer(r'[A-Za-z0-9]+:(\d+(\.\d+)+)', changelogRaw)
+	tag_list = list(version_tag_header_positions)
+	contributor_positions = re.finditer(r'###+(\s+(Contributors+\s+)+)', changelogRaw)
+	contributor_list = list(contributor_positions)
+
+	count = 0
+	for i in tag_list:
+		if version_number in i.group():
+			tag_index = count
+		count += 1  # increment after to retain zero-indexing
+
+	captured_changelog = changelogRaw[tag_list[tag_index].start():contributor_list[tag_index].start()]
+	print(captured_changelog)
+	os.chdir(original_dir)
+	return captured_changelog
 
 if __name__== "__main__":
 	if len(sys.argv) > 0:
