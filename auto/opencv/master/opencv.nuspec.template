@@ -27,12 +27,14 @@ Pass the package argument /Environment to add OpenCV to your user environment va
     <packageSourceUrl>https://github.com/philiparola/chocolatey-packages/tree/master/auto/opencv/master</packageSourceUrl>
     <projectSourceUrl>https://github.com/opencv/opencv</projectSourceUrl>
     <docsUrl>https://docs.opencv.org/</docsUrl>
-    <bugTrackerUrl>https://github.com/opencv/opencv/wiki#Development</bugTrackerUrl>
+    <bugTrackerUrl>https://github.com/opencv/opencv/issues</bugTrackerUrl>
     <tags>opencv programming library image processing</tags>
     <copyright>OpenCV team</copyright>
-    <licenseUrl>http://opencv.org/license.html</licenseUrl>
+    <licenseUrl>https://opencv.org/license</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://cdn.rawgit.com/philiparola/chocolatey-packages/8bbda56cc71494a5d674ecb63ef0882915e9a91e/opencv/opencv.png</iconUrl>
+	<wikiUrl>https://github.com/opencv/opencv/wiki</wikiUrl>
+	<mailingListUrl>https://opencv.org/subscribe/</mailingListUrl>
     <!--<dependencies>
       <dependency id="" version="__VERSION__" />
       <dependency id="" />
