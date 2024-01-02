@@ -21,7 +21,13 @@ If you wish to customize the features compiled in your installation, then you mu
 
 ### Package Parameters
 Pass the package argument /InstallationPath to set where OpenCV will unzip itself.  Left alone, it will unzip in your Chocolatey Tools directory.  Remember, it will always unzip itself to a new folder called \opencv in the directory you chose.
-Pass the package argument /Environment to add OpenCV to your user environment variables, which may or may not be necessary.  Check the installation guide on OpenCV's website to determine the precise directory structure you want to add to your path.  The OPENCV\_DIR variable will be created/replaced, and Path will be appended with %OPENCV\_DIR%\bin.
+Pass the package argument /Environment to add OpenCV to your user environment variables, which may or may not be necessary depending on your specific needs.  Check the installation guide on OpenCV's website to determine the precise directory structure you want to add to your 
+path.  The OPENCV\_DIR variable will be created/replaced, and Path will be appended with %OPENCV\_DIR%\bin.
+
+#### Examples
+Add the install path to your environment: ```choco install opencv --package-parameters '/Environment'```
+Install to a specific directory: ```choco install opencv --package-parameters '/InstallationPath:'C:\test'```
+Install to a specific directory and add to your environment: ```choco install opencv --package-parameters '/InstallationPath:'C:\test' /Environment'```
 </description>
     <projectUrl>http://opencv.org/</projectUrl>
     <packageSourceUrl>https://github.com/philiparola/chocolatey-packages/tree/master/auto/opencv/master</packageSourceUrl>

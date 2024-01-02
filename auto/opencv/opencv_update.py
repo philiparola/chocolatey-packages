@@ -142,6 +142,7 @@ def pull_release_notes(version_number):
 
 	version_tag_header_positions = re.finditer(r'[A-Za-z0-9]+:(\d+(\.\d+)+)', changelogRaw)
 	tag_list = list(version_tag_header_positions)
+	# the contributors table is unable to be displayed in the chocolatey markup, so we trim it out here
 	contributor_positions = re.finditer(r'###+(\s+(Contributors+\s+)+)', changelogRaw)
 	contributor_list = list(contributor_positions)
 
@@ -150,9 +151,17 @@ def pull_release_notes(version_number):
 		if version_number in i.group():
 			tag_index = count
 		count += 1  # increment after to retain zero-indexing
+	
+	for i in contributor_list:
+		if i.start() > tag_list[tag_index].start():   			# this contributor tag occurs after our entry, and we need to bookend before it (but we also may want to cut earlier...)
+			if i.start() > tag_list[tag_index+1].start():		# this contributor tag occurs after the next version entry, indicating this release doesn't have a contributor tag, so we terminate at the next release header
+				endIndex = tag_list[tag_index+1].start()
+				break
+			else:												# this contributor tag occurs before the next version entry, so we trim here to avoid the format errors
+				endIndex = i.start()
+				break
 
-	captured_changelog = changelogRaw[tag_list[tag_index].start():contributor_list[tag_index].start()]
-	print(captured_changelog)
+	captured_changelog = changelogRaw[ tag_list[tag_index].start() : endIndex ]
 	os.chdir(original_dir)
 	return captured_changelog
 
