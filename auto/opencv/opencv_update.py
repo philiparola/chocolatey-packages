@@ -14,6 +14,7 @@ import shutil
 import in_place
 import sys
 import re
+from xml.sax.saxutils import escape
 
 # Regex for opencv versioning
 # \d+\.{1}\d+\.{1}\d+
@@ -137,7 +138,7 @@ def pull_release_notes(version_number):
 	os.chdir("opencv.wiki")
 	print(os.getcwd())
 
-	with open('ChangeLog.md','r',encoding="utf8") as file:
+	with open('OpenCV-Change-Logs.md','r',encoding="utf8") as file:
 		changelogRaw = file.read()
 
 	version_tag_header_positions = re.finditer(r'[A-Za-z0-9]+:(\d+(\.\d+)+)', changelogRaw)
@@ -162,8 +163,13 @@ def pull_release_notes(version_number):
 				break
 
 	captured_changelog = changelogRaw[ tag_list[tag_index].start() : endIndex ]
+	#tag_index gives a `ref before init` error if the log is empty, but not if it isn't empty?  lol
 	os.chdir(original_dir)
-	return captured_changelog
+
+	# replace invalid chars
+	captured_changelog_cleaned = escape(captured_changelog)
+
+	return captured_changelog_cleaned
 
 if __name__== "__main__":
 	if len(sys.argv) > 0:
