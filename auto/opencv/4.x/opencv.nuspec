@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
+    <id>OpenCV</id>
+    <title>OpenCV</title>
+    <version>4.13.0</version>
+    <authors>Itseez</authors>
+    <owners>Philip Arola</owners>
+    <summary>Open Source Computer Vision</summary>
+	<!-- If you are following the instuction below directly from this file (duh), then careful, as I had to diddle with Markdown to get it to behave properly on the Chocolatey pakage page.-->
+	<description>
+OpenCV is released under a BSD license and hence it's free for both academic and commercial use. It has C++, C, Python and Java interfaces and supports Windows, Linux, Mac OS, iOS and Android. OpenCV was designed for computational efficiency and with a strong focus on real-time applications. Written in optimized C/C++, the library can take advantage of multi-core processing. Enabled with OpenCL, it can take advantage of the hardware acceleration of the underlying heterogeneous compute platform. Adopted all around the world, OpenCV has more than 47 thousand people of user community and estimated number of downloads exceeding 9 million. Usage ranges from interactive art, to mines inspection, stitching maps on the web or through advanced robotics.
+
+### Package Info
+This version is from the master branch of development, which is the cutting edge of OpenCV development.
+
+This package installs precompiled OpenCV binaries.  This does not allow you to customize the features compiled into your installation.  This download is about 185 MB.
+If you wish to customize the features compiled in your installation, then you must compile OpenCV yourself.  This requires [Git](https://chocolatey.org/packages/git) and [CMake](https://chocolatey.org/packages/cmake).  You can follow the instructions at [opencv.org](https://docs.opencv.org/master/d3/d52/tutorial_windows_install.html "OpenCV build tutorial") to build using [Microsoft Visual Studio](https://chocolatey.org/packages/visualstudio2017community "Visual Studio Chocolatey Package").
+
+### Package Parameters
+Pass the package argument /InstallationPath to set where OpenCV will unzip itself.  Left alone, it will unzip in your Chocolatey Tools directory.  Remember, it will always unzip itself to a new folder called \opencv in the directory you chose.
+Pass the package argument /Environment to add OpenCV to your user environment variables, which may or may not be necessary depending on your specific needs.  Check the installation guide on OpenCV's website to determine the precise directory structure you want to add to your 
+path.  The OPENCV\_DIR variable will be created/replaced, and Path will be appended with %OPENCV\_DIR%\bin.
+
+#### Examples
+Add the install path to your environment: ```choco install opencv --package-parameters '/Environment'```
+Install to a specific directory: ```choco install opencv --package-parameters '/InstallationPath:'C:\test'```
+Install to a specific directory and add to your environment: ```choco install opencv --package-parameters '/InstallationPath:'C:\test' /Environment'```
+</description>
+    <projectUrl>http://opencv.org/</projectUrl>
+    <packageSourceUrl>https://github.com/philiparola/chocolatey-packages/tree/master/auto/opencv/master</packageSourceUrl>
+    <projectSourceUrl>https://github.com/opencv/opencv</projectSourceUrl>
+    <docsUrl>https://docs.opencv.org/</docsUrl>
+    <bugTrackerUrl>https://github.com/opencv/opencv/issues</bugTrackerUrl>
+    <tags>opencv programming library image processing</tags>
+    <copyright>OpenCV team</copyright>
+    <licenseUrl>https://opencv.org/license</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://cdn.rawgit.com/philiparola/chocolatey-packages/8bbda56cc71494a5d674ecb63ef0882915e9a91e/opencv/opencv.png</iconUrl>
+	<wikiUrl>https://github.com/opencv/opencv/wiki</wikiUrl>
+	<mailingListUrl>https://opencv.org/subscribe/</mailingListUrl>
+    <!--<dependencies>
+      <dependency id="" version="__VERSION__" />
+      <dependency id="" />
+    </dependencies>-->
+    <releaseNotes>
+			version:4.13.0
+--------------
+
+*December, 2025*
+
+New Year update for OpenCV 4.x has been released.
+
+- CVBenchmark
+    - An unbiased CPU benchmark by OpenCV (https://github.com/opencv/cvbenchmark) that provides an evaluation of different CPUs in real-world computer vision and AI workloads is released.
+
+- Core module:
+    - Modified Input/OutputArray methods to handle 'std::vector&lt;T&gt;' or 'std::vector&lt;std::vector&lt;T&gt;&gt;' in more accurate way [#28242](https://github.com/opencv/opencv/issues/28242)
+    - Made `cuda::GpuMatND` compatible with InputArray/OutputArray [#23913](https://github.com/opencv/opencv/issues/23913)
+    - Forced output type for empty  matrices where it's defined in API [#27972](https://github.com/opencv/opencv/issues/27972)
+    - Added `std::vector` length check Input/OutputArray [#27817](https://github.com/opencv/opencv/issues/27817)
+    - Added 16-bit LUT and corresponding HAL entrypoint [#27890](https://github.com/opencv/opencv/issues/27890), [#27911](https://github.com/opencv/opencv/issues/27911)
+    - Add `cv::Mat::copyAt` for for ROI operation [#27318](https://github.com/opencv/opencv/issues/27318)
+    - Extended JSON support in cv::FileStorage: `null` parsing [#27579](https://github.com/opencv/opencv/issues/27579) and
+    - Added support parsing null in JSON parser in cv::FileStorage [#27579](https://github.com/opencv/opencv/issues/27579) and back slash "\" support [#27587](https://github.com/opencv/opencv/issues/27587)
+    - Fixed `cv::solveCubic` numerical instability via coefficient normalization [#28117](https://github.com/opencv/opencv/issues/28117)
+    - Fixed tempfile race condition on Windows [#28087](https://github.com/opencv/opencv/issues/28087)
+    - Restore parallel framework name on failure attempt [#27802](https://github.com/opencv/opencv/issues/27802)
+    - Dropped OPENCV_FOR_OPENMP_DYNAMIC_DISABLE environment variable in favor of standard OMP_DYNAMIC [#28122](https://github.com/opencv/opencv/issues/28122)
+    - Enabled fp16 conversions, but disabled NEON FP16 arithmetics on Windows for ARM [#27897](https://github.com/opencv/opencv/issues/27897)
+    - Fixed dot product accumulation causing NORM test failures on Windows ARM64 [#28211](https://github.com/opencv/opencv/issues/28211)
+    - Added several performance optimizations for Windows on ARM: [#27575](https://github.com/opencv/opencv/issues/27575), [#27596](https://github.com/opencv/opencv/issues/27596)
+    - Fixed missing vec_cvfo on IBM POWER9 due to unavailable VSX float64 conversion [#27990](https://github.com/opencv/opencv/issues/27990)
+    - Fix in-place flip in HAL for RISC-V RVV [#28180](https://github.com/opencv/opencv/issues/28180)
+    - Added inRange HAL entry point [#27854](https://github.com/opencv/opencv/issues/27854)
+    - Disabled IPP with AVX512 in cv::compare because of performance regression [#28311](https://github.com/opencv/opencv/issues/28311)
+
+- Imgproc module:
+    - Added Iterative Phase Correlation [#28146](https://github.com/opencv/opencv/issues/28146), [paper](https://iopscience.iop.org/article/10.3847/1538-4365/ab63d7)
+    - Added `cv::minEnclosingConvexPolygon` [#27369](https://github.com/opencv/opencv/issues/27369)
+    - Improved near-zero convexity handling in `cv::convexHull` [#28043](https://github.com/opencv/opencv/issues/28043)
+    - Kept `cv::convexHull` output indices monotone if possible [#28163](https://github.com/opencv/opencv/issues/28163)
+    - Fixed overflow in connected components [#27582](https://github.com/opencv/opencv/issues/27582)
+    - Corrected `cv::minAreaRect` to follow documentation (force angle to range [-90, 0)) [#28051](https://github.com/opencv/opencv/issues/28051)
+    - Increased minAreaRect accuracy with doubles [#28149](https://github.com/opencv/opencv/issues/28149)
+    - Added `cv::CLAHE::BitShift` option [#28014](https://github.com/opencv/opencv/issues/28014)
+    - Fixed `cv::minEnclosingCircle` [#27904](https://github.com/opencv/opencv/issues/27904), [#27914](https://github.com/opencv/opencv/issues/27914)
+    - Fixed standard `cv::HoughLines` output shift for rho. [#27992](https://github.com/opencv/opencv/issues/27992)
+    - Fixed LINE_4/LINE_8 swap in `cv::drawContours` [#28088](https://github.com/opencv/opencv/issues/28088)
+    - Fixed bug in approxPolyDP: calculate distance to a segment, not to a line [#28119](https://github.com/opencv/opencv/issues/28119)
+    - Various performance optimizations for Gaussian Blur, including AVX512 [#27795](https://github.com/opencv/opencv/issues/27795) and blur [#27822](https://github.com/opencv/opencv/issues/27822), bilateralFilter [#27433](https://github.com/opencv/opencv/issues/27433).
+    - Added CV_SIMD_SCALABLE branch to pointSetBoundingRect [#27479](https://github.com/opencv/opencv/issues/27479)
+    - Added Canny, Scharr and Sobel for riscv-rvv hal [#27378](https://github.com/opencv/opencv/issues/27378)
+    - Optimized `ThickLine()` for distant points [#27366](https://github.com/opencv/opencv/issues/27366)
+    - Fixed heap-buffer-overflow in stackBlur [#28233](https://github.com/opencv/opencv/issues/28233) [#28250](https://github.com/opencv/opencv/issues/28250)
+    - Fixed the out-of-bounds read in cv::bilateralFilter for 32f images [#28259](https://github.com/opencv/opencv/issues/28259)
+    - Fixed memory leak in ipp_warp function [#27532](https://github.com/opencv/opencv/issues/27532)
+    - Set limitation to IPP Bilateral Filter tiles number to avoid too small tiles [#27720](https://github.com/opencv/opencv/issues/27720)
+    - Fixed incorrect implementation of multi-threaded call for warp perspective in IPP HAL [#27903](https://github.com/opencv/opencv/issues/27903)
+    - Added stateless HAL for filters and morphology [#28208](https://github.com/opencv/opencv/issues/28208)
+
+- Imgcodecs module:
+    - Extended metadata support in Jpeg (ICCP and XMP) [#27583](https://github.com/opencv/opencv/issues/27583), PNG and WebP [#27503](https://github.com/opencv/opencv/issues/27503), cICP field in PNG [#27741](https://github.com/opencv/opencv/issues/27741), AVIF (XMP) [#27506](https://github.com/opencv/opencv/issues/27506), [#28072](https://github.com/opencv/opencv/issues/28072).
+    - Added OpenEXR multispectral read/write support [#27485](https://github.com/opencv/opencv/issues/27485)
+    - Added strict validation for encoding parameters [#27621](https://github.com/opencv/opencv/issues/27621), [#27769](https://github.com/opencv/opencv/issues/27769)
+    - Relaxed decoding size limit to over 1 GiB for several formats [#27811](https://github.com/opencv/opencv/issues/27811), [#27976](https://github.com/opencv/opencv/issues/27976)
+    - Added `IMWRITE_PNG_ZLIBBUFFER_SIZE` option support for PNG [#27551](https://github.com/opencv/opencv/issues/27551), [#27615](https://github.com/opencv/opencv/issues/27615)
+    - Fixed memory leak in WebP backend [#27849](https://github.com/opencv/opencv/issues/27849)
+    - Added workaround for image flipping bug in older GDAL FITS drivers [#27919](https://github.com/opencv/opencv/issues/27919)
+    - Added support for 32bpp BMP with BI_BITFIELDS [#27559](https://github.com/opencv/opencv/issues/27559)
+    - Fixed several overflow and out-of-bound access issues in BMP [#28040](https://github.com/opencv/opencv/issues/28040), [#27847](https://github.com/opencv/opencv/issues/27847)
+    - Fixed potential crashes in PNG found by fuzzer. Namely 429429085, 429645379, 430091585 [#27529](https://github.com/opencv/opencv/issues/27529)
+    - Fixed several potential overflows and error handling mistakes in PNG [#28249](https://github.com/opencv/opencv/issues/28249), [#28196](https://github.com/opencv/opencv/issues/28196), 27750
+    - Fixed alpha handling for blending in PNG format [#27981](https://github.com/opencv/opencv/issues/27981)
+    - Set `matrixCoefficients` to `UNSPECIFIED` for monochrome images in AVIF [#28065](https://github.com/opencv/opencv/issues/28065)
+    - Added safety checks for AVIF decoder and encoder [#28200](https://github.com/opencv/opencv/issues/28200)
+
+- VideoIO module:
+    - Added option to open camera device by index through FFmpeg [#27841](https://github.com/opencv/opencv/issues/27841), Added FFmpeg 8.0 support [#27691](https://github.com/opencv/opencv/issues/27691), [#27746](https://github.com/opencv/opencv/issues/27746)
+    - Extended Orbbec SDK support: added timestamps [#27610](https://github.com/opencv/opencv/issues/27610), options for custom fps and resolution [#27629](https://github.com/opencv/opencv/issues/27629), camera distortion coefficients as API [#27663](https://github.com/opencv/opencv/issues/27663)
+    - Extended Aravis SDK support: allowed system-wide installation of SDK [#28090](https://github.com/opencv/opencv/issues/28090), set default pixel format for cameras with unsupported format [#28086](https://github.com/opencv/opencv/issues/28086)
+    - Added macOS support for Orbbec Gemini330 camera [#27930](https://github.com/opencv/opencv/issues/27930)
+    - Fixed frame seeking with negative DTS values in FFMPEG backend [#27878](https://github.com/opencv/opencv/issues/27878)
+    - Fixed CvCapture_FFMPEG::setProperty(CAP_PROP_POS_*) followed by getProperty [#27523](https://github.com/opencv/opencv/issues/27523)
+    - Added Raspberry Pi 4 and 5 V4L2 Stateless HEVC Hardware Acceleration with FFmpeg [#27453](https://github.com/opencv/opencv/issues/27453)
+    - Optimized FFmpeg VideoCapture with swscale threads option [#27755](https://github.com/opencv/opencv/issues/27755)
+    - Fix return code from CvVideoWriter_FFMPEG::writeFrame() when encapsulating [#](https://github.com/opencv/opencv/issues/)[#27737](https://github.com/opencv/opencv/issues/27737)
+    - Added OPENCV_FFMPEG_SKIP_LOG_CALLBACK to preserve custom FFmpeg logging [#27864](https://github.com/opencv/opencv/issues/27864)
+    - Get code to compile without FFMPEG's libavdevice [#27948](https://github.com/opencv/opencv/issues/27948)
+    - catch _com_error exceptions to suppress debugger flooding [#28073](https://github.com/opencv/opencv/issues/28073)
+    - Fixed picture_sw object leak in ffmpeg backend with hardware codecs. [#28283](https://github.com/opencv/opencv/issues/28283)
+    - videoio(dshow): Fix incorrect mapping for White Balance Temperature (`CAP_PROP_WB_TEMPERATURE`) property [#28202](https://github.com/opencv/opencv/issues/28202)
+    - Fixes a crash on iOS when calling `VideoWriter::release()` in OpenCV 4.12.0 [#28173](https://github.com/opencv/opencv/issues/28173).
+
+- Features2D module:
+    - Fixed ORB inconsistency for masks with values differs from 255 [#26366](https://github.com/opencv/opencv/issues/26366)
+    - Fixed pointer arithmetic in BRISK corner traversal [#28091](https://github.com/opencv/opencv/issues/28091)
+    - Added heuristic to allocate buffer for FAST features depending on input image resolution [#27657](https://github.com/opencv/opencv/issues/27657)
+    - Optimized AGAST for Windows on ARM [#27776](https://github.com/opencv/opencv/issues/27776)
+    - Added FAST to RISC-V RVV HAL [#27391](https://github.com/opencv/opencv/issues/27391)
+
+- Objdetect module:
+    - Added pixel-based confidence in ArUco marker detection [#23190](https://github.com/opencv/opencv/issues/23190)
+    - Improved multiple QR codes detection with QRCodeDetector::detectAndDecodeMulti [#27787](https://github.com/opencv/opencv/issues/27787)
+    - Fixed to prevent QR code decoding from throwing on degenerate source points [#27837](https://github.com/opencv/opencv/issues/27837)
+    - Fix QRCodeDetector::detectAndDecode crash in case of inconsistent detection [#27877](https://github.com/opencv/opencv/issues/27877)
+    - Remove floating point arithmetic from angle computation in QR codes [#28157](https://github.com/opencv/opencv/issues/28157)
+    - Speedup ChArUco by avoiding temporary copies [#27820](https://github.com/opencv/opencv/issues/27820)
+    - Fixed stack-use-after-scope errors in charuco detector [#28285](https://github.com/opencv/opencv/issues/28285)
+    - Used fast-path with INTER_LINEAR resize when ALGO_HINT_APPROX is used in HOG 27706
+
+- DNN module:
+    - Added more layers support: ONNX randomNormalLike [#28164](https://github.com/opencv/opencv/issues/28164), TFLite Minimum [#28248](https://github.com/opencv/opencv/issues/28248), Maximum [#28171](https://github.com/opencv/opencv/issues/28171)
+    - Allowed protobuffer message to be compiled with LITE_RUNTIME [#27960](https://github.com/opencv/opencv/issues/27960)
+    - Fixed ONNX Convolution node parsing when kernel size is implicit [#28282](https://github.com/opencv/opencv/issues/28282)
+    - Fixed Windograd flag handling in convolution layer [#28000](https://github.com/opencv/opencv/issues/28000)
+    - Added NEON intrinsics implementation of fastGEMM1T function [#27785](https://github.com/opencv/opencv/issues/27785)
+    - Add SVE optimized fastGEMM1T function and SVE dispatch [#28055](https://github.com/opencv/opencv/issues/28055)
+    - Fixed heap-buffer-overflow in DNN NaryEltwiseLayer [#28272](https://github.com/opencv/opencv/issues/28272)
+    - Improved performance of softmax_3d with loop unrolling [#27777](https://github.com/opencv/opencv/issues/27777)
+
+- Calib3d module:
+    - Added estimateTranslation2D() [#27950](https://github.com/opencv/opencv/issues/27950)
+    - Replaced Gao P3P with Ding P3P algorithm [#27736](https://github.com/opencv/opencv/issues/27736)
+    - Added QR decomposition option to stereoCalibrate [#27920](https://github.com/opencv/opencv/issues/27920)
+    - Improved fisheye::undistortPoints convergence [#27993](https://github.com/opencv/opencv/issues/27993)
+    - Fixed invalid memory access in USAC [#27865](https://github.com/opencv/opencv/issues/27865)
+    - Fixed out of bounds in calibrateAndNormalizePointsPnP [#28009](https://github.com/opencv/opencv/issues/28009)
+
+- Stitching module:
+    - Fixed multiband blender memory leak 27333 [#28085](https://github.com/opencv/opencv/issues/28085)
+    - Pass warp parameters by value to avoid CUDA constant races [#28118](https://github.com/opencv/opencv/issues/28118)
+    - Optimized fast.cpp on Windows ARM with loop unrolling [#27642](https://github.com/opencv/opencv/issues/27642)
+
+- HighGUI module:
+    - Fixed linking for HighGUI against Qt 6.9 and newer [#27908](https://github.com/opencv/opencv/issues/27908)
+    - Fixed Qt HighGUI lifecycle issue when external QApplication exists [#28312](https://github.com/opencv/opencv/issues/28312)
+    - Fixed memory leak in `CvWindow` Qt back-end [#28102](https://github.com/opencv/opencv/issues/28102)
+
+- G-API module:
+    - Added G-API custom stream sources in Python [#27276](https://github.com/opencv/opencv/issues/27276)
+    - Implemented `cfgEnsureNamedTensors` option to OpenVINO Params [#27549](https://github.com/opencv/opencv/issues/27549)
+    - Implemented `cfgClampOutputs` option to OpenVINO Params [#27600](https://github.com/opencv/opencv/issues/27600)
+    - Renamed `WorkloadType::notify()` -&gt; `WorkloadType::set()` [#28299](https://github.com/opencv/opencv/issues/28299)
+    - Added support to set workload type dynamically in both OpenVINO and ONNX OVEP [#27460](https://github.com/opencv/opencv/issues/27460)
+    - Fixed null pointer dereference in G-API stateful kernels [#28137](https://github.com/opencv/opencv/issues/28137)
+    - Updated deprecated ov::element::undefined [#28127](https://github.com/opencv/opencv/issues/28127)
+
+- Video module:
+    - Added multichannel support for findTransformECC and computeECC [#27524](https://github.com/opencv/opencv/issues/27524)
+    - Add optional template mask for findTransformECC [#27952](https://github.com/opencv/opencv/issues/27952)
+    - Added optional Known Foreground Mask for Background Subtractors [#27810](https://github.com/opencv/opencv/issues/27810)
+    - Add setCoarsestScale to DISOpticalFlow [#28217](https://github.com/opencv/opencv/issues/28217)
+    - Fixed potential pointer overflow in Farnback optical flow [#28226](https://github.com/opencv/opencv/issues/28226)
+
+- ML module:
+    - Fixed `ml::KDTree::findNearest` [#27915](https://github.com/opencv/opencv/issues/27915)
+
+- Photo module:
+    - Added 16U and 32F support in merge functions in photo module [#28168](https://github.com/opencv/opencv/issues/28168)
+
+- JavaScript bindings:
+    - Added option to wrap opencv_contrib into JS too [#27828](https://github.com/opencv/opencv/issues/27828)
+    - Fixed string property bindings in JS generator [#27726](https://github.com/opencv/opencv/issues/27726)
+    - Update helpers.js to include .delete [#27613](https://github.com/opencv/opencv/issues/27613)
+    - Added deep copy behavior for Mat.clone() [#28216](https://github.com/opencv/opencv/issues/28216)
+    - Removed deprecated DEMANGLE_SUPPORT option
+    - Tuned CONV_NR_FP32 size for WASM [#27773](https://github.com/opencv/opencv/issues/27773)
+    - Added large scalar kernel for fastconv [#27723](https://github.com/opencv/opencv/issues/27723)
+    - Fixed generation when returned class and function are in a namespace [#27963](https://github.com/opencv/opencv/issues/27963)
+    - Fixed JS bindings for namespaced `Ptr` factory return types [#28143](https://github.com/opencv/opencv/issues/28143)
+
+- Python bindings:
+    - Tuned Python bindings for logging [#27812](https://github.com/opencv/opencv/issues/27812)
+    - Marked Feature2D.detectAndCompute mask as optional in Python type stubs [#27544](https://github.com/opencv/opencv/issues/27544)
+    - Marked distCoeffs/R/D as optional in calib3d functions [#27564](https://github.com/opencv/opencv/issues/27564)
+    - Added DLPACK support [#27581](https://github.com/opencv/opencv/issues/27581), [#27861](https://github.com/opencv/opencv/issues/27861)
+    - Fixed memory leaks in pybindings [#27738](https://github.com/opencv/opencv/issues/27738)
+    - Add PathLike type hints for args annotated with CV_WRAP_FILE_PATH [#27767](https://github.com/opencv/opencv/issues/27767)
+    - Fixed memory leak in pyopencv_to for path-like objects [#28047](https://github.com/opencv/opencv/issues/28047)
+    - Tunned Python bindings: use export_name as resolved typename for AliasTypeNode [#27997](https://github.com/opencv/opencv/issues/27997)
+    - python: fix pytest-cov false warnings by using compile() with full file path in exec_file_wrapper [#28093](https://github.com/opencv/opencv/issues/28093)
+    - Fixed python scalar typing issues [#27620](https://github.com/opencv/opencv/issues/27620)
+    - Fixed bug in `ifdef` state machine in header parser for bindings [#27393](https://github.com/opencv/opencv/issues/27393)
+    - Wrap GridType field in `cv::findCirclesGrid` parameters structure [#27689](https://github.com/opencv/opencv/issues/27689)
+
+- Java bindings:
+    - Introduced option to generate Java code with new Cleaners interface or old finalize() [#28159](https://github.com/opencv/opencv/issues/28159)
+    - Enabled Java wrapper generation for Vec4i [#27567](https://github.com/opencv/opencv/issues/27567)
+    - Added Java wrapper support for List&lt;List&lt;Mat&gt;&gt; [#27705](https://github.com/opencv/opencv/issues/27705), [#27708](https://github.com/opencv/opencv/issues/27708)
+
+- Applications and Tools:
+    - Improved interactive calibration tool: added option to select camera backend [#27546](https://github.com/opencv/opencv/issues/27546), extended calibration flags [#27574](https://github.com/opencv/opencv/issues/27574), Improved preview for grayscale cameras [#27628](https://github.com/opencv/opencv/issues/27628).
+    - Aligned calibration tools and samples output fields to make them reusable in further steps [#27872](https://github.com/opencv/opencv/issues/27872)
+    - Used calibration board imperfectness correction only for the cases where it's applicable [#27571](https://github.com/opencv/opencv/issues/27571)
+    - Added option to define Aruco index offset in pattern generator [#27799](https://github.com/opencv/opencv/issues/27799)
+    - Moved pattern generator to apps and rewrote tutorial [#27833](https://github.com/opencv/opencv/issues/27833)
+    - Fix charuco_board_pattern in generate_pattern.py [#27876](https://github.com/opencv/opencv/issues/27876)
+    - Updated Tutorial PSNR for identical images [#27859](https://github.com/opencv/opencv/issues/27859)
+
+- Build:
+    - Integrated KleidiCV version 0.7 with Mac and Linux support (enabled by default) [#28220](https://github.com/opencv/opencv/issues/28220), [#27640](https://github.com/opencv/opencv/issues/27640), [#27607](https://github.com/opencv/opencv/issues/27607).
+    - Integrated IPP ICV with AWX512 support.
+    - Fixed issues identified by PVS Studio [#28167](https://github.com/opencv/opencv/issues/28167), [#28185](https://github.com/opencv/opencv/issues/28185), [#28198](https://github.com/opencv/opencv/issues/28198)
+    - Added support MS Visual Studio 2026 support [#28013](https://github.com/opencv/opencv/issues/28013)
+    - Added CUDA 13.0 support [#27636](https://github.com/opencv/opencv/issues/27636), [#27668](https://github.com/opencv/opencv/issues/27668), [#27537](https://github.com/opencv/opencv/issues/27537). Fixed compatibility issues with modern CUDA: [#27522](https://github.com/opencv/opencv/issues/27522), [#27734](https://github.com/opencv/opencv/issues/27734), [#27889](https://github.com/opencv/opencv/issues/27889), [#27949](https://github.com/opencv/opencv/issues/27949)
+    - Fixed OpenBLAS detection [#27778](https://github.com/opencv/opencv/issues/27778), [#28052](https://github.com/opencv/opencv/issues/28052)
+    - Added reproducible builds support by making host system version optional [#27979](https://github.com/opencv/opencv/issues/27979)
+    - Fixed build issue with some old GCC versions [#27569](https://github.com/opencv/opencv/issues/27569)
+    - Fixed unicode tracing symbols with QT [#28128](https://github.com/opencv/opencv/issues/28128)
+    - Fixed eigen diagnostics for versions after v3.4.0 [#27536](https://github.com/opencv/opencv/issues/27536)
+    - Added CMake define option to enforce IPP calls in IPP HAL [#27925](https://github.com/opencv/opencv/issues/27925)
+
+
+      </releaseNotes>
+    <!--<provides></provides>-->
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

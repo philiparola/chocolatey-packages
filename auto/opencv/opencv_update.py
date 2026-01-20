@@ -36,7 +36,9 @@ def main():
 
 def create_package_from_release(release):
 	if release.tag_name[0] == "4":
-		branch = "master"
+		branch = "4.x"
+	elif release.tag_name[0] == "5":
+		branch = "5.x"
 	elif release.tag_name[0] == "3":
 		branch = "3.4"
 	else:
@@ -146,23 +148,28 @@ def pull_release_notes(version_number):
 	# the contributors table is unable to be displayed in the chocolatey markup, so we trim it out here
 	contributor_positions = re.finditer(r'###+(\s+(Contributors+\s+)+)', changelogRaw)
 	contributor_list = list(contributor_positions)
-
-	count = 0
-	for i in tag_list:
-		if version_number in i.group():
-			tag_index = count
-		count += 1  # increment after to retain zero-indexing
 	
-	for i in contributor_list:
-		if i.start() > tag_list[tag_index].start():   			# this contributor tag occurs after our entry, and we need to bookend before it (but we also may want to cut earlier...)
-			if i.start() > tag_list[tag_index+1].start():		# this contributor tag occurs after the next version entry, indicating this release doesn't have a contributor tag, so we terminate at the next release header
-				endIndex = tag_list[tag_index+1].start()
-				break
-			else:												# this contributor tag occurs before the next version entry, so we trim here to avoid the format errors
-				endIndex = i.start()
-				break
+	print(changelogRaw)
 
-	captured_changelog = changelogRaw[ tag_list[tag_index].start() : endIndex ]
+	if tag_list and contributor_list:  # Empty lists are falsy in Python
+		count = 0
+		for i in tag_list:
+			if version_number in i.group():
+				tag_index = count
+			count += 1  # increment after to retain zero-indexing
+
+		for i in contributor_list:
+			if i.start() > tag_list[tag_index].start():   			# this contributor tag occurs after our entry, and we need to bookend before it (but we also may want to cut earlier...)
+				if i.start() > tag_list[tag_index+1].start():		# this contributor tag occurs after the next version entry, indicating this release doesn't have a contributor tag, so we terminate at the next release header
+					endIndex = tag_list[tag_index+1].start()
+					break
+				else:												# this contributor tag occurs before the next version entry, so we trim here to avoid the format errors
+					endIndex = i.start()
+					break
+
+		captured_changelog = changelogRaw[ tag_list[tag_index].start() : endIndex ]
+	else:
+		captured_changelog = changelogRaw
 	#tag_index gives a `ref before init` error if the log is empty, but not if it isn't empty?  lol
 	os.chdir(original_dir)
 
